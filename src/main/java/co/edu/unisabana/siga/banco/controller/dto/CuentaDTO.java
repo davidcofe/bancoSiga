@@ -16,4 +16,10 @@ public class CuentaDTO {
     private String nombreCuenta;
     private TipoCuenta tipoCuenta;
     private BigDecimal saldo;
+
+    public CuentaDTO(int idUsuario, String nombreCuenta, TipoCuenta tipoCuenta){
+        this.idUsuario = idUsuario;
+        this.nombreCuenta = nombreCuenta;
+        this.tipoCuenta = tipoCuenta;
+    }
 }
