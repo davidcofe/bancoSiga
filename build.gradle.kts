@@ -23,7 +23,6 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")
-	// Anadir Lombok
 
 }
 
