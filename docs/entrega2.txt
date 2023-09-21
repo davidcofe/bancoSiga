@@ -6,3 +6,4 @@ TODO:
     Postman.json en la carpeta /docs
     OpenAPI(SWAGGER) en la carpeta /docs
     Documentacion de diagramas en la carpeta /docs
+    MUTATION TEST +1 EN EL PARCIAL
