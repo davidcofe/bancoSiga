@@ -1,0 +1,8 @@
+TODO:
+    Pruebas unitarias | integracion continua
+    Perfil de pruebas con H2
+    Reporte de Coverage de JACOCO > 85%
+    Reporte de JACOCO de CI
+    Postman.json en la carpeta /docs
+    OpenAPI(SWAGGER) en la carpeta /docs
+    Documentacion de diagramas en la carpeta /docs
