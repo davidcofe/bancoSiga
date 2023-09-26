@@ -1,7 +1,7 @@
 name:  Continuous Integrations
 on:
   pull_request:
-    branches: ["main"]
+    branches: ["master"]
 
 permissions:
   contents: read
@@ -11,7 +11,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Pull from master branch
+        uses: actions/checkout@v4
 
       - name: Installing Java
         uses: actions/setup-java@v3
