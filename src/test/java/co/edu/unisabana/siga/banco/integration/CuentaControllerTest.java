@@ -21,7 +21,7 @@ public class CuentaControllerTest {
 
     @Test
     public void crearCuenta(){
-        CuentaDTO dto = new CuentaDTO(1, "Cuenta de Prueba", TipoCuenta.Ahorros);
+        CuentaDTO dto = new CuentaDTO(0, "Test", TipoCuenta.Ahorros);
 
         ResponseEntity<RespuestaDTO> respuesta =
         restTemplate.postForEntity("/cuenta/crear", dto, RespuestaDTO.class);
