@@ -30,11 +30,11 @@ public class CuentaController {
     }
 
     @GetMapping(path = "/cuenta/{id}")
-    public List<Cuenta> verCuenta(@PathVariable int id) {
+    public List<CuentaDTO> verCuenta(@PathVariable int id) {
         try{
             return logica.verCuenta(id);
         } catch (IllegalArgumentException e) {
-            return (List<Cuenta>) e;
+            return (List<CuentaDTO>) e;
         }
     }
 
