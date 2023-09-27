@@ -41,16 +41,14 @@ public class CuentaLogica {
     }
 
     public List<CuentaDTO> verCuenta(int id) {
-        List<CuentaDTO> obtenerCuenta = cuentaRepository.getAccountById(id)
+        return cuentaRepository.getAccountById(id)
                 .stream()
                 .map(cuenta -> new CuentaDTO(cuenta.getIdUsuario(), cuenta.getNumeroCuenta(), cuenta.getNombreCuenta(),
                         cuenta.getTipoCuenta(), cuenta.getSaldo())).collect(Collectors.toList());
-        return obtenerCuenta;
     }
 
     public BigDecimal verSaldo(int id) {
-        BigDecimal saldoCuenta = cuentaRepository.getTotalBalance(id);
-        return saldoCuenta;
+        return cuentaRepository.getTotalBalance(id);
     }
 
     public BigDecimal verSaldoAhorros(int id) {
