@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CuentaLogica {
@@ -19,7 +20,7 @@ public class CuentaLogica {
         this.cuentaRepository = cuentaRepository;
     }
 
-    public void crearCuenta(CuentaDTO cuentaDTO) {
+    public Cuenta crearCuenta(CuentaDTO cuentaDTO) {
         Cuenta cuenta = new Cuenta();
         cuenta.setIdUsuario(cuentaDTO.getIdUsuario());
         cuenta.setNombreCuenta(cuentaDTO.getNombreCuenta());
@@ -36,16 +37,18 @@ public class CuentaLogica {
         cuenta.setFechaModificacion(LocalDate.now());
 
         cuentaRepository.save(cuenta);
+        return cuenta;
     }
 
-    public List<Cuenta> verCuenta(int id) {
-        List<Cuenta> obtenerCuenta = cuentaRepository.getAccountById(id);
-        return obtenerCuenta;
+    public List<CuentaDTO> verCuenta(int id) {
+        return cuentaRepository.getAccountById(id)
+                .stream()
+                .map(cuenta -> new CuentaDTO(cuenta.getIdUsuario(), cuenta.getNumeroCuenta(), cuenta.getNombreCuenta(),
+                        cuenta.getTipoCuenta(), cuenta.getSaldo())).collect(Collectors.toList());
     }
 
     public BigDecimal verSaldo(int id) {
-        BigDecimal saldoCuenta = cuentaRepository.getTotalBalance(id);
-        return saldoCuenta;
+        return cuentaRepository.getTotalBalance(id);
     }
 
     public BigDecimal verSaldoAhorros(int id) {
