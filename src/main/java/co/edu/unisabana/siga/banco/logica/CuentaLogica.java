@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class CuentaLogica {
@@ -40,11 +39,8 @@ public class CuentaLogica {
         return cuenta;
     }
 
-    public List<CuentaDTO> verCuenta(int id) {
-        return cuentaRepository.getAccountById(id)
-                .stream()
-                .map(cuenta -> new CuentaDTO(cuenta.getIdUsuario(), cuenta.getNumeroCuenta(), cuenta.getNombreCuenta(),
-                        cuenta.getTipoCuenta(), cuenta.getSaldo())).collect(Collectors.toList());
+    public List<Cuenta> verCuenta(int id) {
+        return cuentaRepository.getAccountById(id);
     }
 
     public BigDecimal verSaldo(int id) {
