@@ -20,12 +20,12 @@ public class CuentaControllerTest {
     private TestRestTemplate restTemplate;
 
     @Test public void crearCuenta(){
-        CuentaDTO dto = new CuentaDTO(0, "Test", TipoCuenta.Ahorros);
+        CuentaDTO dto = new CuentaDTO(1101, "Test", TipoCuenta.Ahorros);
 
         ResponseEntity<RespuestaDTO> respuesta =
         restTemplate.postForEntity("/cuenta/crear", dto, RespuestaDTO.class);
 
-        Assertions.assertEquals("Cuenta guardado correctamente", respuesta.getBody().getMensaje());
+        Assertions.assertEquals("Cuenta guardada correctamente", respuesta.getBody().getMensaje());
     }
 
     @Test public void verCuenta(){

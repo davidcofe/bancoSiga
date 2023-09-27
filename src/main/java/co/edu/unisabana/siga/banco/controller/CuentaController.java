@@ -23,18 +23,18 @@ public class CuentaController {
         try {
             logica.crearCuenta(cuentaDTO);
 
-            return new RespuestaDTO("Cuenta guardado correctamente");
+            return new RespuestaDTO("Cuenta guardada correctamente");
         } catch (IllegalArgumentException e) {
             return new RespuestaDTO("Cuenta con nombre prohibido");
         }
     }
 
     @GetMapping(path = "/cuenta/{id}")
-    public List<CuentaDTO> verCuenta(@PathVariable int id) {
+    public List<Cuenta> verCuenta(@PathVariable int id) {
         try{
             return logica.verCuenta(id);
         } catch (IllegalArgumentException e) {
-            return (List<CuentaDTO>) e;
+            return (List<Cuenta>) e;
         }
     }
 
