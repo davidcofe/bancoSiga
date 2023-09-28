@@ -17,8 +17,6 @@ public class ClienteLogica {
         this.clienteRepository = clienteRepository;
     }
 
-
-
     public Cliente guardarCliente(ClienteDTO clienteDTO) {
         Cliente cliente = new Cliente();
         cliente.setCodigo(clienteDTO.getCodigo());
