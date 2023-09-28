@@ -5,8 +5,6 @@ import co.edu.unisabana.siga.banco.bd.ClienteRepository;
 import co.edu.unisabana.siga.banco.controller.dto.ClienteDTO;
 import co.edu.unisabana.siga.banco.helper.Token;
 import org.springframework.stereotype.Service;
-import lombok.Lombok;
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -21,7 +19,7 @@ public class ClienteLogica {
 
 
 
-    public void guardarCliente(ClienteDTO clienteDTO) {
+    public Cliente guardarCliente(ClienteDTO clienteDTO) {
         Cliente cliente = new Cliente();
         cliente.setCodigo(clienteDTO.getCodigo());
         cliente.setNombre(clienteDTO.getNombre());
@@ -35,6 +33,7 @@ public class ClienteLogica {
         cliente.setFechaModificacion(LocalDate.now());
 
         clienteRepository.save(cliente);
+        return cliente;
     }
 
     public List<Cliente> verCliente(int id) {
