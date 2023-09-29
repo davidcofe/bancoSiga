@@ -1,7 +1,8 @@
 plugins {
-	java
+	id("java")
 	id("org.springframework.boot") version "2.7.14"
 	id("io.spring.dependency-management") version "1.0.15.RELEASE"
+	id("jacoco")
 }
 
 group = "co.edu.unisabana.siga"
@@ -32,4 +33,28 @@ dependencies {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+tasks.test {
+	finalizedBy(tasks.jacocoTestReport)
+}
+
+tasks.withType<JacocoReport> {
+	dependsOn(tasks.test)
+	reports {
+		csv.required.set(true) // Habilita el informe CSV de JaCoCo
+	}
+	val mainSourceSetOutput = sourceSets.main.get().output
+	classDirectories.setFrom(
+			mainSourceSetOutput.asFileTree.matching {
+				exclude("**/controller/dto/**")
+				exclude("**/co/edu/unisabana/siga/banco/bd/**")
+			}
+	)
+}
+
+
+
+jacoco {
+	toolVersion = "0.8.8"
 }
