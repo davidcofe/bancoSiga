@@ -1,8 +1,8 @@
 plugins {
-	java
+	kotlin("jvm") version "1.6.0" // Agrega el plugin de Kotlin si no lo has hecho
 	id("org.springframework.boot") version "2.7.14"
 	id("io.spring.dependency-management") version "1.0.15.RELEASE"
-	jacoco
+	id("jacoco")
 }
 
 group = "co.edu.unisabana.siga"
@@ -25,24 +25,29 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")
-
 }
 
 tasks.withType<Test> {
 	useJUnitPlatform()
 }
 
-tasks.test{
+tasks.test {
 	finalizedBy(tasks.jacocoTestReport)
 }
 
-tasks.jacocoTestReport{
+tasks.withType<JacocoReport> {
 	dependsOn(tasks.test)
-	reports{
+	reports {
 		csv.required.set(true)
 	}
+	classDirectories.setFrom(
+			sourceSets.main.get().output.asFileTree.matching {
+				exclude("**/controller/dto/**")
+				exclude("**/bd/**")
+			}
+	)
 }
 
-jacoco{
+jacoco {
 	toolVersion = "0.8.8"
 }
