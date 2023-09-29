@@ -3,8 +3,6 @@ package co.edu.unisabana.siga.banco.controller.dto;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
-
 @Getter @Setter
 public class ClienteDTO {
     private String nombre;
@@ -16,4 +14,10 @@ public class ClienteDTO {
     private boolean tarjetaCredito;
     private String email;
     private String hashedPassword;
+
+    public ClienteDTO(String nombre, String apellido, String email) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+    }
 }

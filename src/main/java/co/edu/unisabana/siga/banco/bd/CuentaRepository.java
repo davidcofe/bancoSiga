@@ -14,26 +14,26 @@ import java.util.List;
 public interface CuentaRepository extends JpaRepository<Cuenta, Integer> {
 
     @Query (value = "SELECT * FROM cuenta WHERE id_usuario = :id_usuario", nativeQuery = true)
-    List<Cuenta> getAccountById(@Param ("id_usuario")int id_usuario);
+    List<Cuenta> getAccountById(@Param ("id_usuario")int idUsuario);
     @Query (value = "SELECT sum(saldo) FROM cuenta WHERE id_usuario = :id_usuario", nativeQuery = true)
-    BigDecimal getTotalBalance(@Param("id_usuario") int id_usuario);
+    BigDecimal getTotalBalance(@Param("id_usuario") int idUsuario);
 
     @Query (value = "SELECT sum(saldo) FROM cuenta WHERE id_usuario = :id_usuario AND tipo_cuenta = 1", nativeQuery = true)
-    BigDecimal getBalanceAhorros(@Param("id_usuario") int id_usuario);
+    BigDecimal getBalanceAhorros(@Param("id_usuario") int idUsuario);
 
     @Query (value = "SELECT sum(saldo) FROM cuenta WHERE id_usuario = :id_usuario AND tipo_cuenta = 0", nativeQuery = true)
-    BigDecimal getBalanceCorriente(@Param("id_usuario") int id_usuario);
+    BigDecimal getBalanceCorriente(@Param("id_usuario") int idUsuario);
 
     @Query (value = "SELECT sum(saldo) FROM cuenta WHERE id_usuario = :id_usuario AND tipo_cuenta = 2", nativeQuery = true)
-    BigDecimal getBalanceCredito(@Param("id_usuario") int id_usuario);
+    BigDecimal getBalanceCredito(@Param("id_usuario") int idUsuario);
 
     @Query (value = "SELECT saldo FROM cuenta WHERE numero_cuenta = :numero_cuenta", nativeQuery = true)
-    double getBalanceCuenta(@Param("numero_cuenta") int numero_cuenta);
+    double getBalanceCuenta(@Param("numero_cuenta") int numeroCuenta);
 
     @Modifying
     @Query (value = "UPDATE cuenta SET saldo = :new_balance WHERE numero_cuenta = :id_usuario", nativeQuery = true)
     @Transactional
-    void cambiarBalanceCuentaById(@Param("new_balance") double new_balance, @Param("id_usuario") int id_usuario);
+    void cambiarBalanceCuentaById(@Param("new_balance") double newBalance, @Param("id_usuario") int idUsuario);
 
 
 }

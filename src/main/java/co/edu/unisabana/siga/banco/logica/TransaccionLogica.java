@@ -4,6 +4,7 @@ import co.edu.unisabana.siga.banco.bd.CuentaRepository;
 import co.edu.unisabana.siga.banco.bd.Historial;
 import co.edu.unisabana.siga.banco.bd.HistorialRepository;
 import co.edu.unisabana.siga.banco.controller.dto.CuentaDTO;
+import co.edu.unisabana.siga.banco.controller.dto.HistorialDTO;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -19,45 +20,51 @@ public class TransaccionLogica {
         this.historialRepository = historialRepository;
     }
 
-    public void depositar(String numero_cuenta, String deposito) {
+    public void depositar(String numeroCuenta, String deposito) {
 
-        int cuentaId = Integer.parseInt(numero_cuenta);
+        int cuentaId = Integer.parseInt(numeroCuenta);
         double cantidadDeposito = Double.parseDouble(deposito);
         double balanceActual = cuentaRepository.getBalanceCuenta(cuentaId);
         double nuevoBalance = balanceActual + cantidadDeposito;
         cuentaRepository.cambiarBalanceCuentaById(nuevoBalance, cuentaId);
 
-        guardarMovimiento(numero_cuenta, "DEPOSITO", cantidadDeposito);
+        HistorialDTO historialDTO =
+                new HistorialDTO(cuentaId, "DEPOSITO", BigDecimal.valueOf(cantidadDeposito));
+        guardarMovimiento(historialDTO);
     }
 
-    public void retirar(String numero_cuenta, String retiro) {
+    public void retirar(String numeroCuenta, String retiro) {
 
-        int cuentaId = Integer.parseInt(numero_cuenta);
+        int cuentaId = Integer.parseInt(numeroCuenta);
         double cantidadRetiro = Double.parseDouble(retiro);
         double balanceActual = cuentaRepository.getBalanceCuenta(cuentaId);
         double nuevoBalance = balanceActual - cantidadRetiro;
         cuentaRepository.cambiarBalanceCuentaById(nuevoBalance, cuentaId);
 
-        guardarMovimiento(numero_cuenta, "RETIRO", cantidadRetiro);
+        HistorialDTO historialDTO =
+                new HistorialDTO(cuentaId, "RETIRO", BigDecimal.valueOf(cantidadRetiro));
+        guardarMovimiento(historialDTO);
     }
 
-    public void pagos(String numero_cuenta, String pago) {
+    public void pagos(String numeroCuenta, String pago) {
 
-        int cuentaId = Integer.parseInt(numero_cuenta);
+        int cuentaId = Integer.parseInt(numeroCuenta);
         double cantidadPago = Double.parseDouble(pago);
         double balanceActual = cuentaRepository.getBalanceCuenta(cuentaId);
         double nuevoBalance = balanceActual - cantidadPago;
         cuentaRepository.cambiarBalanceCuentaById(nuevoBalance, cuentaId);
 
-        guardarMovimiento(numero_cuenta, "PAGO", cantidadPago);
+        HistorialDTO historialDTO =
+                new HistorialDTO(cuentaId, "PAGO", BigDecimal.valueOf(cantidadPago));
+        guardarMovimiento(historialDTO);
     }
 
-    public void transferencias(String numero_cuentaDe, String numero_cuentaHacia,String deposito) {
+    public void transferencias(String numeroCuentaDe, String numeroCuentaHacia, String deposito) {
         double cantidadTransferencia = Double.parseDouble(deposito);
 
-        int cuentaIdDe = Integer.parseInt(numero_cuentaDe);
+        int cuentaIdDe = Integer.parseInt(numeroCuentaDe);
 
-        int cuentaIdHacia = Integer.parseInt(numero_cuentaHacia);
+        int cuentaIdHacia = Integer.parseInt(numeroCuentaHacia);
 
         double balanceActualDe = cuentaRepository.getBalanceCuenta(cuentaIdDe);
         double nuevoBalanceDe = balanceActualDe - cantidadTransferencia;
@@ -68,17 +75,23 @@ public class TransaccionLogica {
         cuentaRepository.cambiarBalanceCuentaById(nuevoBalanceDe, cuentaIdDe);
         cuentaRepository.cambiarBalanceCuentaById(nuevoBalanceHacia, cuentaIdHacia);
 
-        guardarMovimiento(numero_cuentaDe, "TRANSFERENCIA_PAGO", cantidadTransferencia);
-        guardarMovimiento(numero_cuentaHacia, "TRANSFERENCIA_DEPOSITO", cantidadTransferencia);
+        HistorialDTO historialDTO =
+                new HistorialDTO(cuentaIdDe, "TRANSFERENCIA_PAGO", BigDecimal.valueOf(cantidadTransferencia));
+        guardarMovimiento(historialDTO);
+        HistorialDTO historialDTO1 =
+                new HistorialDTO(cuentaIdHacia, "TRANSFERENCIA_DEPOSITO", BigDecimal.valueOf(cantidadTransferencia));
+        guardarMovimiento(historialDTO1);
     }
 
-    public void guardarMovimiento(String numero_cuenta, String tipo_transaccion, double saldo){
+    public Historial guardarMovimiento(HistorialDTO historialDTO){
         Historial historial = new Historial();
-        historial.setNumeroCuenta(Integer.parseInt(numero_cuenta));
-        historial.setTipoTransaccion(tipo_transaccion);
-        historial.setSaldo(BigDecimal.valueOf(saldo));
+        historial.setNumeroCuenta(historialDTO.getNumeroCuenta());
+        historial.setTipoTransaccion(historialDTO.getTipoTransaccion());
+        historial.setSaldo(historialDTO.getSaldo());
 
         historial.setFechaCreacion(LocalDate.now());
+
         historialRepository.save(historial);
+        return historial;
     }
 }

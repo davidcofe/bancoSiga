@@ -23,10 +23,10 @@ public class TransaccionesController {
     @ApiResponse(responseCode = "400", description = "Cantidad Invalida de deposito")
     @ApiResponse(responseCode = "404", description = "No se encontro deposito")
 
-    public RespuestaDTO depositar(@RequestParam("numero_cuenta") String numero_cuenta,
+    public RespuestaDTO depositar(@RequestParam("numero_cuenta") String numeroCuenta,
                                   @RequestParam("deposito") String deposito){
         try {
-            logica.depositar(numero_cuenta, deposito);
+            logica.depositar(numeroCuenta, deposito);
 
             return new RespuestaDTO("DEPOSITO exitoso");
         } catch (IllegalArgumentException e) {
@@ -40,10 +40,10 @@ public class TransaccionesController {
     @ApiResponse(responseCode = "400", description = "Cantidad Invalida Dinero para retirar")
     @ApiResponse(responseCode = "404", description = "No se encontro Retiro")
 
-    public RespuestaDTO retirar(@RequestParam("numero_cuenta") String numero_cuenta,
+    public RespuestaDTO retirar(@RequestParam("numero_cuenta") String numeroCuenta,
                                 @RequestParam("deposito") String deposito){
         try {
-            logica.retirar(numero_cuenta, deposito);
+            logica.retirar(numeroCuenta, deposito);
 
             return new RespuestaDTO("RETIRO exitoso");
         } catch (IllegalArgumentException e) {
@@ -57,10 +57,10 @@ public class TransaccionesController {
     @ApiResponse(responseCode = "400", description = "Cantidad Invalida Dinero para pagar")
     @ApiResponse(responseCode = "404", description = "No se encontro Pago")
 
-    public RespuestaDTO pagos(@RequestParam("numero_cuenta") String numero_cuenta,
+    public RespuestaDTO pagos(@RequestParam("numero_cuenta") String numeroCuenta,
                               @RequestParam("deposito") String deposito){
         try {
-            logica.pagos(numero_cuenta, deposito);
+            logica.pagos(numeroCuenta, deposito);
 
             return new RespuestaDTO("PAGO exitoso");
         } catch (IllegalArgumentException e) {
@@ -74,11 +74,11 @@ public class TransaccionesController {
     @ApiResponse(responseCode = "400", description = "Cantidad Invalida Dinero")
     @ApiResponse(responseCode = "404", description = "No se encontro transferencia")
 
-    public RespuestaDTO transferencias(@RequestParam("numero_cuentaDe") String numero_cuentaDe,
-                                       @RequestParam("numero_cuentaHacia") String numero_cuentaHacia,
+    public RespuestaDTO transferencias(@RequestParam("numero_cuentaDe") String numeroCuentaDe,
+                                       @RequestParam("numero_cuentaHacia") String numeroCuentaHacia,
                                        @RequestParam("deposito") String deposito){
         try {
-            logica.transferencias(numero_cuentaDe, numero_cuentaHacia, deposito);
+            logica.transferencias(numeroCuentaDe, numeroCuentaHacia, deposito);
 
             return new RespuestaDTO("TRANSFERENCIA exitosa");
         } catch (IllegalArgumentException e) {
