@@ -1,5 +1,5 @@
 plugins {
-	java
+	id("java")
 	id("org.springframework.boot") version "2.7.14"
 	id("io.spring.dependency-management") version "1.0.15.RELEASE"
 	id("jacoco")
@@ -42,15 +42,18 @@ tasks.test {
 tasks.withType<JacocoReport> {
 	dependsOn(tasks.test)
 	reports {
-		csv.required.set(true)
+		csv.required.set(true) // Habilita el informe CSV de JaCoCo
 	}
+	val mainSourceSetOutput = sourceSets.main.get().output
 	classDirectories.setFrom(
-			sourceSets.main.get().output.asFileTree.matching {
-				exclude("*/controller/dto/*")
-				exclude("*/bd/*")
+			mainSourceSetOutput.asFileTree.matching {
+				exclude("**/controller/dto/**")
+				exclude("**/co/edu/unisabana/siga/banco/bd/**")
 			}
 	)
 }
+
+
 
 jacoco {
 	toolVersion = "0.8.8"
