@@ -7,10 +7,10 @@ El programa de Banco Siga se encarga de poder crear nuevos clientes para el uso 
 
 El programa tambien tiene pruebas unitarias y de integracion para verificar que todo este funcionando como debe ser.
 
-Al mismo tiempo conGitHub tiene implementado Continous Integration
+Al mismo tiempo, con GitHubActions, tiene implementado Continous Integration.
 
-Se le a agregado Jaccoco para ver un reporte de las pruebas, al mismo tiempo tiene Swagger integrado para tener acceso a todos los metodos usados en Postman.
+Se le ha agregado Jaccoco para ver un reporte de las pruebas, al mismo tiempo tiene Swagger integrado para tener acceso a todos los metodos usados en Postman.
 
 Y se le integro el PIT de Mutation Test para que el mismo pueda mutar nuestras pruebas y darnos un reporte del mismo.
 
-El Swagger se puede consultar en el siguiente link una ves que se corra el programa y este activo: http://localhost:8085/swagger-ui/index.html#/
+El Swagger se puede consultar en el siguiente link una vez que se corra el programa y este activo: http://localhost:8085/swagger-ui/index.html#/
