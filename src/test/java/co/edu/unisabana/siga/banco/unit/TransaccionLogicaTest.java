@@ -31,7 +31,7 @@ class TransaccionLogicaTest {
     @Test void Given_id_depositar_When_depositar_Then_successful(){
         Mockito.when(cuentaRepository.getBalanceCuenta(1101)).thenReturn(10.0);
 
-        transaccionLogica.depositar("1101", "50.0");
+        transaccionLogica.depositar("1101", 50.0);
         Mockito.verify(cuentaRepository).getBalanceCuenta(1101);
         Mockito.verify(cuentaRepository).cambiarBalanceCuentaById(10.0 + 50.0, 1101);
     }
@@ -40,7 +40,7 @@ class TransaccionLogicaTest {
     @Test void Given_id_retirar_When_depositar_Then_successful(){
         Mockito.when(cuentaRepository.getBalanceCuenta(1101)).thenReturn(10.0);
 
-        transaccionLogica.retirar("1101", "50.0");
+        transaccionLogica.retirar("1101", 50.0);
         Mockito.verify(cuentaRepository).getBalanceCuenta(1101);
         Mockito.verify(cuentaRepository).cambiarBalanceCuentaById(10.0 - 50.0, 1101);
     }
@@ -49,7 +49,7 @@ class TransaccionLogicaTest {
     @Test void Given_id_pagos_When_depositar_Then_successful(){
         Mockito.when(cuentaRepository.getBalanceCuenta(1101)).thenReturn(10.0);
 
-        transaccionLogica.pagos("1101", "50.0");
+        transaccionLogica.pagos("1101", 50.0);
         Mockito.verify(cuentaRepository).getBalanceCuenta(1101);
         Mockito.verify(cuentaRepository).cambiarBalanceCuentaById(10.0 - 50.0, 1101);
     }
@@ -59,7 +59,7 @@ class TransaccionLogicaTest {
         Mockito.when(cuentaRepository.getBalanceCuenta(1101)).thenReturn(10.0);
         Mockito.when(cuentaRepository.getBalanceCuenta(1102)).thenReturn(20.0);
 
-        transaccionLogica.transferencias("1101", "1102", "50.0");
+        transaccionLogica.transferencias("1101", "1102", 50.0);
         Mockito.verify(cuentaRepository).getBalanceCuenta(1101);
         Mockito.verify(cuentaRepository).cambiarBalanceCuentaById(10.0 - 50.0, 1101);
         Mockito.verify(cuentaRepository).getBalanceCuenta(1102);

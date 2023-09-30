@@ -20,10 +20,10 @@ public class TransaccionLogica {
         this.historialRepository = historialRepository;
     }
 
-    public void depositar(String numeroCuenta, String deposito) {
+    public void depositar(String numeroCuenta, double deposito) {
 
         int cuentaId = Integer.parseInt(numeroCuenta);
-        double cantidadDeposito = Double.parseDouble(deposito);
+        double cantidadDeposito = (deposito);
         double balanceActual = cuentaRepository.getBalanceCuenta(cuentaId);
         double nuevoBalance = balanceActual + cantidadDeposito;
         cuentaRepository.cambiarBalanceCuentaById(nuevoBalance, cuentaId);
@@ -33,10 +33,10 @@ public class TransaccionLogica {
         guardarMovimiento(historialDTO);
     }
 
-    public void retirar(String numeroCuenta, String retiro) {
+    public void retirar(String numeroCuenta, double retiro) {
 
         int cuentaId = Integer.parseInt(numeroCuenta);
-        double cantidadRetiro = Double.parseDouble(retiro);
+        double cantidadRetiro = (retiro);
         double balanceActual = cuentaRepository.getBalanceCuenta(cuentaId);
         double nuevoBalance = balanceActual - cantidadRetiro;
         cuentaRepository.cambiarBalanceCuentaById(nuevoBalance, cuentaId);
@@ -46,10 +46,10 @@ public class TransaccionLogica {
         guardarMovimiento(historialDTO);
     }
 
-    public void pagos(String numeroCuenta, String pago) {
+    public void pagos(String numeroCuenta, double pago) {
 
         int cuentaId = Integer.parseInt(numeroCuenta);
-        double cantidadPago = Double.parseDouble(pago);
+        double cantidadPago = (pago);
         double balanceActual = cuentaRepository.getBalanceCuenta(cuentaId);
         double nuevoBalance = balanceActual - cantidadPago;
         cuentaRepository.cambiarBalanceCuentaById(nuevoBalance, cuentaId);
@@ -59,8 +59,8 @@ public class TransaccionLogica {
         guardarMovimiento(historialDTO);
     }
 
-    public void transferencias(String numeroCuentaDe, String numeroCuentaHacia, String deposito) {
-        double cantidadTransferencia = Double.parseDouble(deposito);
+    public void transferencias(String numeroCuentaDe, String numeroCuentaHacia, double deposito) {
+        double cantidadTransferencia = (deposito);
 
         int cuentaIdDe = Integer.parseInt(numeroCuentaDe);
 
