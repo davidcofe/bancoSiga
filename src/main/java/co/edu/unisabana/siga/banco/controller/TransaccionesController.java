@@ -24,7 +24,7 @@ public class TransaccionesController {
     @ApiResponse(responseCode = "404", description = "No se encontro deposito")
 
     public RespuestaDTO depositar(@RequestParam("numero_cuenta") String numeroCuenta,
-                                  @RequestParam("deposito") String deposito){
+                                  @RequestParam("deposito") double deposito){
         try {
             logica.depositar(numeroCuenta, deposito);
 
@@ -41,7 +41,7 @@ public class TransaccionesController {
     @ApiResponse(responseCode = "404", description = "No se encontro Retiro")
 
     public RespuestaDTO retirar(@RequestParam("numero_cuenta") String numeroCuenta,
-                                @RequestParam("deposito") String deposito){
+                                @RequestParam("deposito") double deposito){
         try {
             logica.retirar(numeroCuenta, deposito);
 
@@ -58,7 +58,7 @@ public class TransaccionesController {
     @ApiResponse(responseCode = "404", description = "No se encontro Pago")
 
     public RespuestaDTO pagos(@RequestParam("numero_cuenta") String numeroCuenta,
-                              @RequestParam("deposito") String deposito){
+                              @RequestParam("deposito") double deposito){
         try {
             logica.pagos(numeroCuenta, deposito);
 
@@ -76,7 +76,7 @@ public class TransaccionesController {
 
     public RespuestaDTO transferencias(@RequestParam("numero_cuentaDe") String numeroCuentaDe,
                                        @RequestParam("numero_cuentaHacia") String numeroCuentaHacia,
-                                       @RequestParam("deposito") String deposito){
+                                       @RequestParam("deposito") double deposito){
         try {
             logica.transferencias(numeroCuentaDe, numeroCuentaHacia, deposito);
 
