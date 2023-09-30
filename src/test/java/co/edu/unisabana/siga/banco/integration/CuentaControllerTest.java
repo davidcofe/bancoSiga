@@ -27,8 +27,4 @@ public class CuentaControllerTest {
 
         Assertions.assertEquals("Cuenta guardada correctamente", respuesta.getBody().getMensaje());
     }
-
-    @Test public void verCuenta(){
-
-    }
 }
