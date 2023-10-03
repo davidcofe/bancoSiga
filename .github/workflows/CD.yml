@@ -1,0 +1,25 @@
+name: Continuous Delivery
+on:
+  push:
+    branches: ['master']
+
+permissions:
+  contents: read
+
+jobs:
+  cd:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Downloading Repository
+        uses: actions/checkout@v4
+
+      - name: Build & push Docker image
+        uses: mr-smithers-excellent/docker-build-push@v6
+        with:
+          image: repo/image
+          tags: v1, latest
+          registry: registry-url.io
+          dockerfile: Dockerfile
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
