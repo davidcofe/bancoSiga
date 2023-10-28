@@ -14,3 +14,7 @@ Se le ha agregado Jaccoco para ver un reporte de las pruebas, al mismo tiempo ti
 Y se le integro el PIT de Mutation Test para que el mismo pueda mutar nuestras pruebas y darnos un reporte del mismo.
 
 El Swagger se puede consultar en el siguiente link una vez que se corra el programa y este activo: http://localhost:8085/swagger-ui/index.html#/
+
+Contrasena basica de localhost es 
+User: bancosiga
+Pass: bancosiga
