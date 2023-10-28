@@ -1,10 +1,14 @@
 package co.edu.unisabana.siga.banco.bd;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 import co.edu.unisabana.siga.banco.helper.TipoCuenta;
 
-import javax.persistence.*;
+//import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
