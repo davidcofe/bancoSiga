@@ -1,0 +1,25 @@
+version: '3'
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - "8085:8085"
+    volumes:
+      - ./html:/usr/share/nginx/html
+
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: banco
+      MYSQL_DATABASE: bancosiga
+      MYSQL_USER: root
+      MYSQL_PASSWORD: banco
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+
+networks:
+  default:
+    external:
+      name: my_network
