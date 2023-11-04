@@ -14,13 +14,13 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class CuentaControllerTest {
+class CuentaControllerTest {
 
     @Autowired
     private TestRestTemplate restTemplate;
 
-    @Test public void crearCuenta(){
-        CuentaDTO dto = new CuentaDTO(1101, "Test", TipoCuenta.Ahorros);
+    @Test void crearCuenta(){
+        CuentaDTO dto = new CuentaDTO(1101, "Test", TipoCuenta.AHORROS);
 
         ResponseEntity<RespuestaDTO> respuesta =
         restTemplate.postForEntity("/cuenta/crear", dto, RespuestaDTO.class);

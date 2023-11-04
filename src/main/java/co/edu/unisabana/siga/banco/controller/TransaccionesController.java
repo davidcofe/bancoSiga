@@ -1,12 +1,9 @@
 package co.edu.unisabana.siga.banco.controller;
 
-import co.edu.unisabana.siga.banco.bd.CuentaRepository;
 import co.edu.unisabana.siga.banco.controller.dto.RespuestaDTO;
-import co.edu.unisabana.siga.banco.logica.HistorialLogica;
 import co.edu.unisabana.siga.banco.logica.TransaccionLogica;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import org.jetbrains.annotations.Contract;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

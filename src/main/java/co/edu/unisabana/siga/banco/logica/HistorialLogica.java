@@ -14,7 +14,7 @@ public class HistorialLogica {
         this.historialRepository = historialRepository;
     }
 
-    public List<Historial> verHistorial(int numero_cuenta) {
-        return historialRepository.getHistorialByCuenta(numero_cuenta);
+    public List<Historial> verHistorial(int numeroCuenta) {
+        return historialRepository.getHistorialByCuenta(numeroCuenta);
     }
 }

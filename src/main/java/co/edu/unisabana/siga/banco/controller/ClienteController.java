@@ -1,7 +1,6 @@
 package co.edu.unisabana.siga.banco.controller;
 
 import co.edu.unisabana.siga.banco.bd.Cliente;
-import co.edu.unisabana.siga.banco.bd.Cuenta;
 import co.edu.unisabana.siga.banco.controller.dto.ClienteDTO;
 import co.edu.unisabana.siga.banco.controller.dto.RespuestaDTO;
 import co.edu.unisabana.siga.banco.logica.ClienteLogica;
