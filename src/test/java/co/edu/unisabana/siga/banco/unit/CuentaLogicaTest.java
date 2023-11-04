@@ -27,14 +27,14 @@ class CuentaLogicaTest {
 
     // crearCuenta
     @Test void Given_saldo_null_When_crearCuenta_Then_saldo_0() {
-        CuentaDTO dto = new CuentaDTO(1101, "Test", TipoCuenta.Ahorros);
+        CuentaDTO dto = new CuentaDTO(1101, "Test", TipoCuenta.AHORROS);
 
         Cuenta cuenta = cuentaLogica.crearCuenta(dto);
         Mockito.verify(cuentaRepository).save(cuenta);
         assertEquals(BigDecimal.valueOf(0.0), cuenta.getSaldo());
     }
     @Test void Given_saldo_x_When_crearCuenta_Then_saldo_x() {
-        CuentaDTO dto = new CuentaDTO(1101, "Test", TipoCuenta.Ahorros);
+        CuentaDTO dto = new CuentaDTO(1101, "Test", TipoCuenta.AHORROS);
         dto.setSaldo(BigDecimal.valueOf(10));
 
         Cuenta cuenta = cuentaLogica.crearCuenta(dto);
