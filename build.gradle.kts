@@ -3,6 +3,7 @@ plugins {
 	id("org.springframework.boot") version "2.7.14"
 	id("io.spring.dependency-management") version "1.0.15.RELEASE"
 	id("jacoco")
+	id("org.sonarqube") version "4.4.1.3373"
 }
 
 group = "co.edu.unisabana.siga"
@@ -58,7 +59,11 @@ tasks.withType<JacocoReport> {
 	)
 }
 
-
+sonarqube {
+	properties {
+		property("sonar.projectName", "sigaBanco")
+	}
+}
 
 jacoco {
 	toolVersion = "0.8.8"
