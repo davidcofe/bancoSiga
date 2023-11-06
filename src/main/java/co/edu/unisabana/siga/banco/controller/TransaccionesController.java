@@ -4,9 +4,12 @@ import co.edu.unisabana.siga.banco.controller.dto.RespuestaDTO;
 import co.edu.unisabana.siga.banco.logica.TransaccionLogica;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.Contract;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@Slf4j
 public class TransaccionesController {
     private TransaccionLogica logica;
 
@@ -24,7 +27,7 @@ public class TransaccionesController {
                                   @RequestParam("deposito") double deposito){
         try {
             logica.depositar(numeroCuenta, deposito);
-
+            log.info("se efectuo un deposito a la cuenta " + numeroCuenta);
             return new RespuestaDTO("DEPOSITO exitoso");
         } catch (IllegalArgumentException e) {
             return new RespuestaDTO("ERROR en el DEPOSITO");
@@ -41,7 +44,7 @@ public class TransaccionesController {
                                 @RequestParam("deposito") double deposito){
         try {
             logica.retirar(numeroCuenta, deposito);
-
+            log.info("se efectuo un retiro de la cuenta " + numeroCuenta);
             return new RespuestaDTO("RETIRO exitoso");
         } catch (IllegalArgumentException e) {
             return new RespuestaDTO("ERROR en el RETIRO");
@@ -58,7 +61,7 @@ public class TransaccionesController {
                               @RequestParam("deposito") double deposito){
         try {
             logica.pagos(numeroCuenta, deposito);
-
+            log.info("se efectuo un pago desde la cuenta " + numeroCuenta);
             return new RespuestaDTO("PAGO exitoso");
         } catch (IllegalArgumentException e) {
             return new RespuestaDTO("ERROR en el PAGO");
@@ -76,7 +79,8 @@ public class TransaccionesController {
                                        @RequestParam("deposito") double deposito){
         try {
             logica.transferencias(numeroCuentaDe, numeroCuentaHacia, deposito);
-
+            log.info("se efectuo una transferencia desde la cuenta " + numeroCuentaDe
+                    + " hacia la cuenta " + numeroCuentaHacia);
             return new RespuestaDTO("TRANSFERENCIA exitosa");
         } catch (IllegalArgumentException e) {
             return new RespuestaDTO("ERROR en la TRANSFERENCIA");
