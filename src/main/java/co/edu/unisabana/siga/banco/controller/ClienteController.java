@@ -7,11 +7,13 @@ import co.edu.unisabana.siga.banco.controller.dto.RespuestaDTO;
 import co.edu.unisabana.siga.banco.logica.ClienteLogica;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@Slf4j
 public class ClienteController {
 
     private ClienteLogica logica;
@@ -29,6 +31,7 @@ public class ClienteController {
     public RespuestaDTO guardarCliente(@RequestBody ClienteDTO clienteDTO) {
         try {
             logica.guardarCliente(clienteDTO);
+            log.info("se guardo un nuevo cliente " + clienteDTO.getNombre() + ":" + clienteDTO.getCodigo());
             return new RespuestaDTO("cliente guardado correctamente");
         } catch (IllegalArgumentException e) {
             return new RespuestaDTO("cliente con nombre prohibido");
@@ -43,6 +46,7 @@ public class ClienteController {
 
     public List<Cliente> verCliente(@PathVariable int id) {
         try{
+
             return logica.verCliente(id);
         } catch (IllegalArgumentException e) {
             return (List<Cliente>) e;

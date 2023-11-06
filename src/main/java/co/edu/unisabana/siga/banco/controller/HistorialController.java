@@ -4,6 +4,7 @@ import co.edu.unisabana.siga.banco.bd.Historial;
 import co.edu.unisabana.siga.banco.logica.HistorialLogica;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@Slf4j
 public class HistorialController {
 
     private HistorialLogica logica;
@@ -27,6 +29,7 @@ public class HistorialController {
 
     public List<Historial> verHistorial(@PathVariable int cuenta) {
         try {
+            log.info("se intento visualizar el historial de la cuenta " + cuenta);
             return logica.verHistorial(cuenta);
         } catch (IllegalArgumentException e) {
             return (List<Historial>) e;
