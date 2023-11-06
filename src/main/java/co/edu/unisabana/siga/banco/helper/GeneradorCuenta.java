@@ -1,10 +1,16 @@
 package co.edu.unisabana.siga.banco.helper;
 
-import java.util.Random;
+import java.security.SecureRandom;
 
 public class GeneradorCuenta {
+
+    private GeneradorCuenta() {
+        throw new IllegalStateException("Utility class");
+    }
+
+    private static SecureRandom random = new SecureRandom();
+
     public static int generarNumeroCuenta(){
-        Random random = new Random();
         int numeroCuenta;
         int bound = 1000;
         numeroCuenta = bound * random.nextInt(bound);

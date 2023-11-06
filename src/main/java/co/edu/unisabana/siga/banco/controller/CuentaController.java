@@ -6,11 +6,13 @@ import co.edu.unisabana.siga.banco.controller.dto.RespuestaDTO;
 import co.edu.unisabana.siga.banco.logica.CuentaLogica;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@Slf4j
 public class CuentaController {
 
     private CuentaLogica logica;
@@ -29,7 +31,7 @@ public class CuentaController {
     public RespuestaDTO crearCuenta(@RequestBody CuentaDTO cuentaDTO) {
         try {
             logica.crearCuenta(cuentaDTO);
-
+            log.info("se creo una nueva cuenta " + cuentaDTO.getNombreCuenta() + ":" + cuentaDTO.getNumeroCuenta());
             return new RespuestaDTO("Cuenta guardada correctamente");
         } catch (IllegalArgumentException e) {
             return new RespuestaDTO("Cuenta con nombre prohibido");

@@ -3,6 +3,7 @@ plugins {
 	id("org.springframework.boot") version "2.7.14"
 	id("io.spring.dependency-management") version "1.0.15.RELEASE"
 	id("jacoco")
+	id("org.sonarqube") version "4.4.1.3373"
 }
 
 group = "co.edu.unisabana.siga"
@@ -28,20 +29,28 @@ dependencies {
 	implementation("org.springdoc:springdoc-openapi-data-rest:1.7.0")
 	implementation("org.springdoc:springdoc-openapi-ui:1.7.0")
 	implementation("org.springdoc:springdoc-openapi-kotlin:1.7.0")
-
-
-	implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
-	implementation("org.springframework.boot:spring-boot-starter-security")
-	implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
-	implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity6:3.1.1.RELEASE")
+//	implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
+//	implementation("org.springframework.boot:spring-boot-starter-security")
+//	implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
+//	implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity6:3.1.1.RELEASE")
 }
 
-tasks.withType<Test> {
-	useJUnitPlatform()
+jacoco {
+	toolVersion = "0.8.8"
 }
 
 tasks.test {
+	useJUnitPlatform()
 	finalizedBy(tasks.jacocoTestReport)
+}
+
+tasks {
+	jacocoTestReport {
+		dependsOn(test)
+		reports {
+			xml.required.set(true)
+		}
+	}
 }
 
 tasks.withType<JacocoReport> {
@@ -58,8 +67,10 @@ tasks.withType<JacocoReport> {
 	)
 }
 
-
-
-jacoco {
-	toolVersion = "0.8.8"
+sonarqube {
+	properties {
+		property("sonar.projectName", "sigaBanco")
+	}
 }
+
+

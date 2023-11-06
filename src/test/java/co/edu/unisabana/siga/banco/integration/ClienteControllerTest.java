@@ -16,15 +16,15 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class ClienteControllerTest {
+class ClienteControllerTest {
     @Autowired
     private TestRestTemplate restTemplate;
 
-    @Test public void crearCliente(){
+    @Test void crearCliente(){
         ClienteDTO dto = new ClienteDTO("Test", "Test", "Test@Email.com");
 
         ResponseEntity<RespuestaDTO> respuesta =
-                restTemplate.postForEntity("/cliente/agregar", dto, RespuestaDTO.class);
+            restTemplate.postForEntity("/cliente/agregar", dto, RespuestaDTO.class);
 
         Assertions.assertEquals("cliente guardado correctamente", respuesta.getBody().getMensaje());
     }

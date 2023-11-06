@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface HistorialRepository extends JpaRepository<Historial, Integer> {
 
-    @Query (value = "SELECT * FROM historial WHERE numero_cuenta = :numero_cuenta", nativeQuery = true)
-    List<Historial> getHistorialByCuenta(@Param("numero_cuenta") int numero_cuenta);
+    @Query (value = "SELECT * FROM historial WHERE numeroCuenta = :numeroCuenta", nativeQuery = true)
+    List<Historial> getHistorialByCuenta(@Param("numeroCuenta") int numeroCuenta);
 }
