@@ -15,6 +15,8 @@ Y se le integro el PIT de Mutation Test para que el mismo pueda mutar nuestras p
 
 El Swagger se puede consultar en el siguiente link una vez que se corra el programa y este activo: http://localhost:8085/swagger-ui/index.html#/
 
+Se configuró Sonar para que reciba los porcentajes de jacoco modificando el archivo de configuracion para que Sonar lea el archivo .xml entregado por jacoco al hacer pull.
+
 Contrasena basica de localhost es 
 User: bancosiga
 Pass: bancosiga
