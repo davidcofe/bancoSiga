@@ -113,7 +113,7 @@
                 <div class="col-12">
                     <div class="contact-form">
                         <div id="success"></div>
-                        <form name="sentMessage" id="verCliente" novalidate="novalidate" method="GET" action="http://localhost:8085/cliente/{id}">
+                        <form name="sentMessage" id="verCliente" novalidate="novalidate" method="GET" action="http://localhost:8085/cuenta/{id}" onsubmit="updateAction()">
                             <div class="control-group">
                                 <input type="number" class="form-control" name="id" placeholder="Ingrese el ID" required="required" data-validation-required-message="Por favor ingresa el ID" />
                                 <p class="help-block text-danger"></p>
@@ -163,6 +163,12 @@
 
     <!-- Template Javascript -->
     <script src="../js/main.js"></script>
+    <script>
+        function updateAction() {
+            var cuentaValue = document.getElementById('id').value;
+            document.getElementById('verCliente').action = 'http://localhost:8085/cuenta/' + cuentaValue;
+        }
+    </script>
 </body>
 
 </html>

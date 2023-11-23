@@ -130,7 +130,7 @@
                 <div class="col-12">
                     <div class="contact-form">
                         <div id="success"></div>
-                        <form name="sentMessage" id="crearCuenta" novalidate="novalidate" method="POST" action="http://localhost:8085/cuenta/crear">
+                        <form name="sentMessage" id="crearCuenta" novalidate="novalidate" method="POST" action="http://localhost:8085/cuenta/crear" onsubmit="enviarFormulario()">
                             <div class="control-group">
                                 <input type="number" class="form-control" id="numeroCuenta" placeholder="Ingrese el numero de Usuario" required="required" data-validation-required-message="Por favor ingresa el monto deseado" />
                                 <p class="help-block text-danger"></p>
@@ -196,42 +196,45 @@
     <script src="../js/main.js"></script>
     <script>
         function enviarFormulario() {
-            // Collect form data
-            var numeroCuenta = document.getElementById("numeroCuenta").value;
-            var nombreCuenta = document.getElementById("nombreCuenta").value;
-            var tipoCuenta = document.getElementById("tipoCuenta").value;
+            // Get values from form fields
+            var numeroCuenta = document.getElementById('numeroCuenta').value;
+            var nombreCuenta = document.getElementById('nombreCuenta').value;
+            var tipoCuenta = document.getElementById('tipoCuenta').value;
 
-            // Create a JSON object
+            // Create JSON object
             var jsonData = {
-                idUsuario: numeroCuenta,
-                numeroCuenta: 0,
-                nombreCuenta: nombreCuenta,
-                tipoCuenta: tipoCuenta,
-                saldo: 0
+                "idUsuario": parseInt(numeroCuenta),
+                "numeroCuenta": 0,
+                "nombreCuenta": nombreCuenta,
+                "tipoCuenta": tipoCuenta,
+                "saldo": 0
             };
 
-            // Convert JSON object to string
+            // Convert JSON to string
             var jsonString = JSON.stringify(jsonData);
 
-            // Send POST request with JSON payload
-            fetch("http://localhost:8085/cuenta/crear", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: jsonString
-            })
-                .then(response => response.json())
-                .then(data => {
-                    // Handle the response data
-                    console.log(data);
-                })
-                .catch(error => {
-                    // Handle errors
-                    console.error("Error:", error);
-                });
+            // Send POST request
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "http://localhost:8085/cuenta/crear", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // Handle successful response
+                    console.log("Success:", xhr.responseText);
+                } else {
+                    // Handle error or other status codes
+                    console.error("Error:", xhr.statusText);
+                }
+            };
+
+            xhr.send(jsonString);
+
+            // Prevent the form from submitting in the traditional way
+            event.preventDefault();
         }
     </script>
+
 </body>
 
 </html>
