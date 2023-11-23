@@ -1,11 +1,5 @@
 version: '3'
 services:
-  application:
-    build: .
-    ports:
-      - "8085:8085"
-    networks:
-      - SIGA_net
 
   database:
     image: mysql:latest
@@ -17,6 +11,13 @@ services:
     ports:
       - "3306:3306"
     restart: unless-stopped
+    networks:
+      - SIGA_net
+
+  application:
+    build: .
+    ports:
+      - "8085:8085"
     networks:
       - SIGA_net
 
