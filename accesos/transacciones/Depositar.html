@@ -121,7 +121,7 @@
                 <div class="col-12">
                     <div class="contact-form">
                         <div id="success"></div>
-                        <form name="sentMessage" id="depositar" novalidate="novalidate" method="POST" action="http://localhost:8085/pagar">
+                        <form name="sentMessage" id="depositar" novalidate="novalidate" action="http://localhost:8085/depositar" method="POST">
                             <div class="control-group">
                                 <input type="number" class="form-control" id="numero_cuenta" placeholder="Ingrese la cuenta" required="required" data-validation-required-message="Por favor ingresa el monto deseado" />
                                 <p class="help-block text-danger"></p>
@@ -132,7 +132,7 @@
                             </div>
 
                             <div>
-                                <button class="btn btn-primary py-3 px-5" type="submit" id="sendMessageButton">Enviar</button>
+                                <button class="btn btn-primary py-3 px-5" type="submit" id="sendMessageButton" onclick="submitForm()">Enviar</button>
                             </div>
 
                             <div class="bg-white text-black py-4 px-md-5">
@@ -175,6 +175,39 @@
 
     <!-- Template Javascript -->
     <script src="../js/main.js"></script>
+    <script>
+        document.getElementById('depositar').addEventListener('submit', function (event) {
+            // Prevent the form from submitting normally
+            event.preventDefault();
+
+            // Get the values of your form fields
+            var numeroCuenta = document.getElementById('numero_cuenta').value;
+            var deposito = document.getElementById('deposito').value;
+
+            // Create a FormData object and append the values
+            var formData = new FormData();
+            formData.append('numero_cuenta', numeroCuenta);
+            formData.append('deposito', deposito);
+
+            // Create an XMLHttpRequest object
+            var xhr = new XMLHttpRequest();
+
+            // Configure it: POST-request, URL, true - asynchronous
+            xhr.open('POST', 'http://localhost:8085/depositar', true);
+
+            // Send the request with the form data
+            xhr.send(formData);
+
+            // Optionally, handle the response
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    // Handle the response if needed
+                    console.log(xhr.responseText);
+                }
+            };
+        });
+    </script>
+
 </body>
 
 </html>
