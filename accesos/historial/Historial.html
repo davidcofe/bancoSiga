@@ -112,9 +112,9 @@
                 <div class="col-12">
                     <div class="contact-form">
                         <div id="success"></div>
-                        <form name="sentMessage" id="contactForm" novalidate="novalidate">
+                        <form name="sentMessage" id="verHistorial" novalidate="novalidate" method="GET" action="http://localhost:8085/historial/{cuenta}">
                             <div class="control-group">
-                                <input type="number" class="form-control" id="Cuenta" placeholder="Ingrese la cuenta" required="required" data-validation-required-message="Por favor ingresa el monto deseado" />
+                                <input type="number" class="form-control" id="cuenta" placeholder="Ingrese la cuenta" required="required" data-validation-required-message="Por favor ingresa el monto deseado" />
                                 <p class="help-block text-danger"></p>
                             </div>
 
