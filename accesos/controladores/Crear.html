@@ -132,7 +132,7 @@
                         <div id="success"></div>
                         <form name="sentMessage" id="crearCuenta" novalidate="novalidate" method="POST" action="http://localhost:8085/cuenta/crear">
                             <div class="control-group">
-                                <input type="number" class="form-control" id="numeroCuenta" placeholder="Ingrese el numero de cuenta" required="required" data-validation-required-message="Por favor ingresa el monto deseado" />
+                                <input type="number" class="form-control" id="numeroCuenta" placeholder="Ingrese el numero de Usuario" required="required" data-validation-required-message="Por favor ingresa el monto deseado" />
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="control-group">
@@ -203,8 +203,8 @@
 
             // Create a JSON object
             var jsonData = {
-                idUsuario: 0,
-                numeroCuenta: numeroCuenta,
+                idUsuario: numeroCuenta,
+                numeroCuenta: 0,
                 nombreCuenta: nombreCuenta,
                 tipoCuenta: tipoCuenta,
                 saldo: 0
