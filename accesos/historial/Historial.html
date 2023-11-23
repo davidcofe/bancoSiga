@@ -112,7 +112,7 @@
                 <div class="col-12">
                     <div class="contact-form">
                         <div id="success"></div>
-                        <form name="sentMessage" id="verHistorial" novalidate="novalidate" method="GET" action="http://localhost:8085/historial/{cuenta}">
+                        <form name="sentMessage" id="verHistorial" novalidate="novalidate" method="GET" action="http://localhost:8085/historial/{cuenta}" onsubmit="updateAction()">
                             <div class="control-group">
                                 <input type="number" class="form-control" id="cuenta" placeholder="Ingrese la cuenta" required="required" data-validation-required-message="Por favor ingresa el monto deseado" />
                                 <p class="help-block text-danger"></p>
@@ -169,22 +169,10 @@
     <!-- Template Javascript -->
     <script src="../js/main.js"></script>
     <script>
-        document.getElementById("sendMessageButton").addEventListener("click", function () {
-            // Collect the cuenta from the input field
-            var cuenta = document.getElementById("cuenta").value;
-
-            // Make the GET request
-            fetch("http://localhost:8085/historial/" + cuenta)
-                .then(response => response.json())
-                .then(data => {
-                    // Display the result in an alert
-                    alert(JSON.stringify(data));
-                })
-                .catch(error => {
-                    // Handle errors
-                    console.error("Error:", error);
-                });
-        });
+        function updateAction() {
+            var cuentaValue = document.getElementById('cuenta').value;
+            document.getElementById('verHistorial').action = 'http://localhost:8085/historial/' + cuentaValue;
+        }
     </script>
 </body>
 
