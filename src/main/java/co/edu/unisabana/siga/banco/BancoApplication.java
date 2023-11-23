@@ -1,8 +1,5 @@
 package co.edu.unisabana.siga.banco;
 
-import co.edu.unisabana.siga.banco.controller.TransaccionesController;
-import co.edu.unisabana.siga.banco.controller.observer.TransaccionObserver;
-import co.edu.unisabana.siga.banco.logica.TransaccionLogica;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
 import org.springframework.boot.SpringApplication;
