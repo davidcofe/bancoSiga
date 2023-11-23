@@ -16,10 +16,10 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../../resources/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="../css/style.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -32,7 +32,7 @@
     <div class="container-fluid position-relative nav-bar p-0">
         <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
             <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 pl-3 pl-lg-5">
-                <a href="../../index.html" class="navbar-brand">
+                <a href="../../../index.html" class="navbar-brand">
                     <h1 class="m-0 text-secondary"><span class="text-primary">BANCO</span>SIGA</h1>
                 </a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
@@ -40,7 +40,7 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
                     <div class="navbar-nav ml-auto py-0">
-                        <a href="../../index.html" class="nav-item nav-link">Inicio</a>
+                        <a href="../../../index.html" class="nav-item nav-link">Inicio</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Transacciones</a>
                             <div class="dropdown-menu border-0 rounded-0 m-0">
@@ -52,15 +52,15 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Cuenta</a>
                             <div class="dropdown-menu border-0 rounded-0 m-0">
-                                <a href="Buscar_Cuenta.html" class="dropdown-item">Buscar</a>
-                                <a href="Ver_Saldo.html" class="dropdown-item">Ver saldo</a>
+                                <a href="BuscarCuenta.html" class="dropdown-item">Buscar</a>
+                                <a href="VerSaldo.html" class="dropdown-item">Ver saldo</a>
                             </div>
                         </div>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Cliente</a>
                             <div class="dropdown-menu border-0 rounded-0 m-0">
-                                <a href="../cliente/Agregar.html" class="dropdown-item">Agregar</a>
-                                <a href="../cliente/Buscar.html" class="dropdown-item">Buscar</a>
+                                <a href="../cliente/CrearCliente.html" class="dropdown-item">Agregar</a>
+                                <a href="../cliente/BuscarCliente.html" class="dropdown-item">Buscar</a>
                             </div>
                         </div>
                         <a href="../historial/Historial.html" class="nav-item nav-link">Historial</a>
@@ -81,7 +81,7 @@
                 </div>
                 <div class="col-md-6 text-center text-md-right">
                     <div class="d-inline-flex align-items-center">
-                        <a class="btn text-white" href="../../index.html">Inicio</a>
+                        <a class="btn text-white" href="../../../index.html">Inicio</a>
                         <i class="fas fa-angle-right text-white"></i>
                         <a class="btn text-white disabled" href="">Controladores</a>
                     </div>
@@ -130,7 +130,7 @@
                 <div class="col-12">
                     <div class="contact-form">
                         <div id="success"></div>
-                        <form name="sentMessage" id="crearCuenta" novalidate="novalidate" method="POST" action="http://localhost:8085/cuenta/crear" onsubmit="enviarFormulario()">
+                        <form name="sentMessage" id="crearCuenta" novalidate="novalidate" method="POST" action="http://localhost:8085/cuenta/crear">
                             <div class="control-group">
                                 <input type="number" class="form-control" id="numeroCuenta" placeholder="Ingrese el numero de Usuario" required="required" data-validation-required-message="Por favor ingresa el monto deseado" />
                                 <p class="help-block text-danger"></p>
@@ -183,58 +183,55 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="../lib/easing/easing.min.js"></script>
-    <script src="../lib/waypoints/waypoints.min.js"></script>
-    <script src="../lib/counterup/counterup.min.js"></script>
-    <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../../resources/lib/easing/easing.min.js"></script>
+    <script src="../../resources/lib/waypoints/waypoints.min.js"></script>
+    <script src="../../resources/lib/counterup/counterup.min.js"></script>
+    <script src="../../resources/lib/owlcarousel/owl.carousel.min.js"></script>
 
     <!-- Contact Javascript File -->
-    <script src="../mail/jqBootstrapValidation.min.js"></script>
-    <script src="../mail/contact.js"></script>
+    <script src="../../resources/mail/jqBootstrapValidation.min.js"></script>
+    <script src="../../resources/mail/contact.js"></script>
 
     <!-- Template Javascript -->
-    <script src="../js/main.js"></script>
+    <script src="../../main.js"></script>
     <script>
         function enviarFormulario() {
-            // Get values from form fields
-            var numeroCuenta = document.getElementById('numeroCuenta').value;
-            var nombreCuenta = document.getElementById('nombreCuenta').value;
-            var tipoCuenta = document.getElementById('tipoCuenta').value;
+            // Collect form data
+            var numeroCuenta = document.getElementById("numeroCuenta").value;
+            var nombreCuenta = document.getElementById("nombreCuenta").value;
+            var tipoCuenta = document.getElementById("tipoCuenta").value;
 
-            // Create JSON object
+            // Create a JSON object
             var jsonData = {
-                "idUsuario": parseInt(numeroCuenta),
+                "idUsuario": numeroCuenta,
                 "numeroCuenta": 0,
                 "nombreCuenta": nombreCuenta,
                 "tipoCuenta": tipoCuenta,
                 "saldo": 0
             };
 
-            // Convert JSON to string
+            // Convert JSON object to string
             var jsonString = JSON.stringify(jsonData);
 
-            // Send POST request
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "http://localhost:8085/cuenta/crear", true);
-            xhr.setRequestHeader("Content-Type", "application/json");
-
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    // Handle successful response
-                    console.log("Success:", xhr.responseText);
-                } else {
-                    // Handle error or other status codes
-                    console.error("Error:", xhr.statusText);
-                }
-            };
-
-            xhr.send(jsonString);
-
-            // Prevent the form from submitting in the traditional way
-            event.preventDefault();
+            // Send POST request with JSON payload
+            fetch("http://localhost:8085/cuenta/crear", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: jsonString
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Handle the response data
+                    console.log(data);
+                })
+                .catch(error => {
+                    // Handle errors
+                    console.error("Error:", error);
+                });
         }
     </script>
-
 </body>
 
 </html>
