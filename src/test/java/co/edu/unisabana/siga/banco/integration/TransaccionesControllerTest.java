@@ -17,7 +17,39 @@ class TransaccionesControllerTest {
     @Autowired
     private TestRestTemplate restTemplate;
 
+    /*
+    @Test void depositar(){
 
+        ResponseEntity<RespuestaDTO> respuesta =
+                restTemplate.postForEntity("/depositar?numero_cuenta=9000&xdeposito=1", "", RespuestaDTO.class);
+
+        Assertions.assertEquals("DEPOSITO exitoso", respuesta.getBody().getMensaje());
+    }
+
+    @Test void retirar(){
+
+        ResponseEntity<RespuestaDTO> respuesta =
+                restTemplate.postForEntity("/retirar?numero_cuenta=9000&deposito=1", "", RespuestaDTO.class);
+
+        Assertions.assertEquals("RETIRO exitoso", respuesta.getBody().getMensaje());
+    }
+
+    @Test void pagar(){
+
+        ResponseEntity<RespuestaDTO> respuesta =
+                restTemplate.postForEntity("/pagar?numero_cuenta=9000&deposito=1000", "", RespuestaDTO.class);
+
+        Assertions.assertEquals("PAGO exitoso", respuesta.getBody().getMensaje());
+    }
+
+    @Test void transferir(){
+
+        ResponseEntity<RespuestaDTO> respuesta =
+                restTemplate.postForEntity("/transferir?numero_cuentaDe=9000&numero_cuentaHacia=60000&deposito=1000", "", RespuestaDTO.class);
+
+        Assertions.assertEquals("TRANSFERENCIA exitosa", respuesta.getBody().getMensaje());
+    }
+    */
 
     @Test void depositarFallo(){
 
