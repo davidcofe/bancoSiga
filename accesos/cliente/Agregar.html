@@ -140,27 +140,14 @@
                                 <input type="text" class="form-control" id="nombre" placeholder="Ingrese el nombre del Usuario" required="required" data-validation-required-message="Por favor ingresa el nombre del usuario" />
                                 <p class="help-block text-danger"></p>
                             </div>
-                            <div class="control-group">
-                                <input type="number" class="form-control" id="codigo" placeholder="Ingrese el hashedPassword" required="required" data-validation-required-message="Por favor ingresa el hashedPassword" />
-                                <p class="help-block text-danger"></p>
-                            </div>
 
                             <div class="control-group">
                                 <input type="text" class="form-control" id="apellido" placeholder="Ingrese el apellido del Usuario" required="required" data-validation-required-message="Por favor ingresa el apellido del usuario" />
                                 <p class="help-block text-danger"></p>
                             </div>
-                            <div class="control-group">
-                                <input type="number" class="form-control" id="saldo" placeholder="Ingrese el hashedPassword" required="required" data-validation-required-message="Por favor ingresa el hashedPassword" />
-                                <p class="help-block text-danger"></p>
-                            </div>
 
                             <div class="control-group">
                                 <input type="email" class="form-control" id="email" placeholder="Ingrese el email del Usuario" required="required" data-validation-required-message="Por favor ingresa el email del usuario" />
-                                <p class="help-block text-danger"></p>
-                            </div>
-
-                            <div class="control-group">
-                                <input type="number" class="form-control" id="hashedPassword" placeholder="Ingrese el hashedPassword" required="required" data-validation-required-message="Por favor ingresa el hashedPassword" />
                                 <p class="help-block text-danger"></p>
                             </div>
 
@@ -208,6 +195,50 @@
 
     <!-- Template Javascript -->
     <script src="../js/main.js"></script>
+    <script>
+        document.getElementById("guardarCliente").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Collect form data
+            var nombre = document.getElementById("nombre").value;
+            var apellido = document.getElementById("apellido").value;
+            var email = document.getElementById("email").value;
+
+            // Create a JSON object
+            var jsonData = {
+                nombre: nombre,
+                codigo: 0,
+                apellido: apellido,
+                saldo: 0,
+                cuentaAhorros: true,
+                cuentaCorriente: true,
+                tarjetaCredito: true,
+                email: email,
+                hashedPassword: "string"
+            };
+
+            // Convert JSON object to string
+            var jsonString = JSON.stringify(jsonData);
+
+            // Send POST request with JSON payload
+            fetch("http://localhost:8085/cliente/agregar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: jsonString
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Handle the response data
+                    console.log(data);
+                })
+                .catch(error => {
+                    // Handle errors
+                    console.error("Error:", error);
+                });
+        });
+    </script>
 </body>
 
 </html>
