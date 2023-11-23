@@ -20,6 +20,7 @@ services:
       - "8085:8085"
     networks:
       - SIGA_net
+    command: python3 -m http.server 8080
 
 networks:
   SIGA_net:
