@@ -130,23 +130,23 @@
                 <div class="col-12">
                     <div class="contact-form">
                         <div id="success"></div>
-                        <form name="sentMessage" id="contactForm" novalidate="novalidate">
+                        <form name="sentMessage" id="transferencias" novalidate="novalidate" method="POST" action="http://localhost:8085/transferir">
                             <div class="form-row">
                                 <div class="col-md-6">
                                     <div class="control-group">
-                                        <input type="number" class="form-control" id="name" placeholder="Cuenta Origen" required="required" data-validation-required-message="Por favor ingresa cuenta origen" />
+                                        <input type="number" class="form-control" id="numero_cuentaDe" placeholder="Cuenta Origen" required="required" data-validation-required-message="Por favor ingresa cuenta origen" />
                                         <p class="help-block text-danger"></p>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="control-group">
-                                        <input type="number" class="form-control" id="email" placeholder="Cuenta Destino" required="required" data-validation-required-message="Por favor ingresa cuenta destino" />
+                                        <input type="number" class="form-control" id="numero_cuentaHacia" placeholder="Cuenta Destino" required="required" data-validation-required-message="Por favor ingresa cuenta destino" />
                                         <p class="help-block text-danger"></p>
                                     </div>
                                 </div>
                             </div>
                             <div class="control-group">
-                                <input type="number" class="form-control" id="subject" placeholder="Monto" required="required" data-validation-required-message="Por favor ingresa el monto deseado" step="0.01" />
+                                <input type="number" class="form-control" id="deposito" placeholder="Monto" required="required" data-validation-required-message="Por favor ingresa el monto deseado" step="0.01" />
                                 <p class="help-block text-danger"></p>
                             </div>
 

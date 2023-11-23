@@ -135,19 +135,30 @@
                 <div class="col-12">
                     <div class="contact-form">
                         <div id="success"></div>
-                        <form name="sentMessage" id="contactForm" novalidate="novalidate" method="POST" action="http://localhost:8085/">
+                        <form name="sentMessage" id="guardarCliente" novalidate="novalidate" method="POST" action="http://localhost:8085/cliente/agregar">
                             <div class="control-group">
                                 <input type="text" class="form-control" id="nombre" placeholder="Ingrese el nombre del Usuario" required="required" data-validation-required-message="Por favor ingresa el nombre del usuario" />
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="control-group">
+                                <input type="number" class="form-control" id="codigo" placeholder="Ingrese el hashedPassword" required="required" data-validation-required-message="Por favor ingresa el hashedPassword" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+
+                            <div class="control-group">
                                 <input type="text" class="form-control" id="apellido" placeholder="Ingrese el apellido del Usuario" required="required" data-validation-required-message="Por favor ingresa el apellido del usuario" />
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="control-group">
+                                <input type="number" class="form-control" id="saldo" placeholder="Ingrese el hashedPassword" required="required" data-validation-required-message="Por favor ingresa el hashedPassword" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+
+                            <div class="control-group">
                                 <input type="email" class="form-control" id="email" placeholder="Ingrese el email del Usuario" required="required" data-validation-required-message="Por favor ingresa el email del usuario" />
                                 <p class="help-block text-danger"></p>
                             </div>
+
                             <div class="control-group">
                                 <input type="number" class="form-control" id="hashedPassword" placeholder="Ingrese el hashedPassword" required="required" data-validation-required-message="Por favor ingresa el hashedPassword" />
                                 <p class="help-block text-danger"></p>

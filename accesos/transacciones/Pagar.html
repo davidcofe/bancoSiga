@@ -121,13 +121,13 @@
                 <div class="col-12">
                     <div class="contact-form">
                         <div id="success"></div>
-                        <form name="sentMessage" id="contactForm" novalidate="novalidate">
+                        <form name="sentMessage" id="pagos" novalidate="novalidate" method="POST" action="http://localhost:8085/pagar">
                             <div class="control-group">
-                                <input type="number" class="form-control" id="Cuenta" placeholder="Ingrese la cuenta" required="required" data-validation-required-message="Por favor ingresa el monto deseado" />
+                                <input type="number" class="form-control" id="numero_cuenta" placeholder="Ingrese la cuenta" required="required" data-validation-required-message="Por favor ingresa el monto deseado" />
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="control-group">
-                                <input type="number" class="form-control" id="Monto" placeholder="Ingrese el monto" required="required" data-validation-required-message="Por favor ingresa el monto deseado" step="0.01" />
+                                <input type="number" class="form-control" id="deposito" placeholder="Ingrese el monto" required="required" data-validation-required-message="Por favor ingresa el monto deseado" step="0.01" />
                                 <p class="help-block text-danger"></p>
                             </div>
 
