@@ -151,7 +151,7 @@
                             </div>
 
                             <div>
-                                <button class="btn btn-primary py-3 px-5" type="submit" id="sendMessageButton">Enviar</button>
+                                <button class="btn btn-primary py-3 px-5" type="submit" id="sendMessageButton" onclick="enviarFormulario()">Enviar</button>
                             </div>
 
                             <div class="bg-white text-black py-4 px-md-5">
@@ -194,6 +194,44 @@
 
     <!-- Template Javascript -->
     <script src="../js/main.js"></script>
+    <script>
+        function enviarFormulario() {
+            // Collect form data
+            var numeroCuenta = document.getElementById("numeroCuenta").value;
+            var nombreCuenta = document.getElementById("nombreCuenta").value;
+            var tipoCuenta = document.getElementById("tipoCuenta").value;
+
+            // Create a JSON object
+            var jsonData = {
+                idUsuario: 0,
+                numeroCuenta: numeroCuenta,
+                nombreCuenta: nombreCuenta,
+                tipoCuenta: tipoCuenta,
+                saldo: 0
+            };
+
+            // Convert JSON object to string
+            var jsonString = JSON.stringify(jsonData);
+
+            // Send POST request with JSON payload
+            fetch("http://localhost:8085/cuenta/crear", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: jsonString
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Handle the response data
+                    console.log(data);
+                })
+                .catch(error => {
+                    // Handle errors
+                    console.error("Error:", error);
+                });
+        }
+    </script>
 </body>
 
 </html>
